@@ -1,0 +1,6 @@
+general:
+  kafka-topic: midas-core-topic
+spring:
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
