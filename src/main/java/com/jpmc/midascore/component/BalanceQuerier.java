@@ -1,22 +1,18 @@
 package com.jpmc.midascore.component;
 
-import com.jpmc.midascore.entity.UserRecord;
-import com.jpmc.midascore.repository.UserRepository;
+import com.jpmc.midascore.foundation.Balance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.Optional;
+import org.springframework.web.client.RestTemplate;
 
 @Component
 public class BalanceQuerier {
 
     @Autowired
-    private UserRepository userRepository;
+    private RestTemplate restTemplate;
 
-    public float getBalance(String userName) {
-        Optional<UserRecord> userRecordOptional = userRepository.findByName(userName);
-        if (userRecordOptional.isPresent()) {
-            return userRecordOptional.get().getBalance();
-        }
-        return 0.0f;
+    public Balance query(Long id) {
+        String url = "http://localhost:33400/balance?userId=" + id;
+        return restTemplate.getForObject(url, Balance.class);
     }
 }

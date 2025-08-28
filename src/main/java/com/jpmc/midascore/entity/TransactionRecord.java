@@ -25,6 +25,7 @@ public class TransactionRecord {
     private UserRecord recipient;
 
     private float amount;
+    private float incentive;
     private LocalDateTime timestamp;
 
     public TransactionRecord() {}
@@ -34,6 +35,14 @@ public class TransactionRecord {
         this.recipient = recipient;
         this.amount = amount;
         this.timestamp = LocalDateTime.now();
+    }
+
+    public float getIncentive() {
+        return incentive;
+    }
+
+    public void setIncentive(float incentive) {
+        this.incentive = incentive;
     }
 
     public Long getId() {
